@@ -3,10 +3,6 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
 class TestMosquitto < MosquittoTestCase
-  def test_version
-    assert_equal 1003001, Mosquitto.version
-  end
-
   def test_constants
     assert_equal 0, Mosquitto::AT_MOST_ONCE
     assert_equal 1, Mosquitto::AT_LEAST_ONCE
