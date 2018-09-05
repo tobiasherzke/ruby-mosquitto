@@ -11,7 +11,7 @@ class TestLoops < MosquittoTestCase
     assert client.connect(TEST_HOST, TEST_PORT, TIMEOUT)
     client.wait_readable
 
-    assert_instance_of Fixnum, client.socket
+    assert_instance_of Integer, client.socket
     assert client.socket != -1
   end
 
@@ -38,7 +38,7 @@ class TestLoops < MosquittoTestCase
       assert_raises TypeError do
         client.loop_forever(:invalid,1)
       end
-      assert client.connect(TEST_HOST, 1883, TIMEOUT)
+      assert client.connect(TEST_HOST, TEST_PORT, TIMEOUT)
 
       assert client.loop_forever(-1,1)
     end.join(2)
