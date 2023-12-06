@@ -20,7 +20,7 @@ if !have_library 'mosquitto'
       brew_exec_path.chomp!
       brew_exec_path = File.readlink(brew_exec_path) if File.symlink?(brew_exec_path)
       File.expand_path(File.join(brew_exec_path, "..", ".."))
-    elsif File.exists?("/usr/local/Cellar/mosquitto")
+    elsif File.exist?("/usr/local/Cellar/mosquitto")
       '/usr/local/Cellar'
     end
 
