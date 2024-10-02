@@ -10,7 +10,7 @@ typedef struct {
     Data_Get_Struct(obj, mosquitto_message_wrapper, message); \
     if (!message) rb_raise(rb_eTypeError, "uninitialized Mosquitto message!");
 
-VALUE rb_mosquitto_message_alloc(const struct mosquitto_message *msg);
+VALUE rb_mosquitto_message_alloc(struct mosquitto_message *msg);
 void _init_rb_mosquitto_message();
 
 #endif

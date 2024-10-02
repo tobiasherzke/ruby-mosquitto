@@ -20,7 +20,7 @@ static void rb_mosquitto_free_message(void *ptr)
  *  within the binding scope, NEVER by the user.
  *
  */
-VALUE rb_mosquitto_message_alloc(const struct mosquitto_message *msg)
+VALUE rb_mosquitto_message_alloc(struct mosquitto_message *msg)
 {
     VALUE message;
     mosquitto_message_wrapper *wrapper = NULL;
