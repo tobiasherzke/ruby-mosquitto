@@ -20,7 +20,7 @@
 extern rb_encoding *binary_encoding;
 #define MosquittoEncode(str) rb_enc_associate(str, binary_encoding)
 
-#define MosquittoError(desc) rb_raise(rb_eMosquittoError, desc);
+#define MosquittoError(desc) rb_raise(rb_eMosquittoError, "%s", desc);
 
 extern VALUE rb_mMosquitto;
 extern VALUE rb_eMosquittoError;
