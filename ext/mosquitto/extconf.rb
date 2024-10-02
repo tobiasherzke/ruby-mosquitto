@@ -43,8 +43,8 @@ end
 have_header("pthread.h") or abort('pthread support required!')
 have_macro("LIBMOSQUITTO_VERSION_NUMBER", "mosquitto.h")
 
-$defs << "-pedantic"
 $CFLAGS << ' -Wall -funroll-loops'
 $CFLAGS << ' -Wextra -O0 -ggdb3' if ENV['DEBUG']
+$CFLAGS << ' -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-int-conversion'
 
 create_makefile('mosquitto_ext')
