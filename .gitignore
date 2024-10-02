@@ -6,6 +6,8 @@
 *.lai
 *.dylib.dSYM
 *.dylib
+*.so
+*.dll
 *.o
 *.a
 *.log
