@@ -1,7 +1,5 @@
 # mosquitto - a high perf MQTT 3.1 client
 
-[![Build Status](https://travis-ci.org/xively/mosquitto.png)](https://travis-ci.org/xively/mosquitto)
-
 The mosquitto gem is meant to serve as an easy, performant and standards compliant client for interacting with MQTT brokers.
 
 The API consists of two classes:
@@ -12,7 +10,7 @@ The API consists of two classes:
 
 ## About MQTT and libmosquitto
 
-[MQ Telemetry Transport](http://mqtt.org/) is :
+[MQ Telemetry Transport](https://mqtt.org/) is :
 
 ```
 MQTT stands for MQ Telemetry Transport. It is a publish/subscribe, extremely simple and lightweight messaging
@@ -22,7 +20,7 @@ reliability and some degree of assurance of delivery. These principles also turn
 the emerging “machine-to-machine” (M2M) or “Internet of Things” world of connected devices, and for mobile
 applications where bandwidth and battery power are at a premium.
 ```
-Please see the [FAQ](http://mqtt.org/faq) and [list of supported software](http://mqtt.org/wiki/software).
+Please see the [FAQ](https://mqtt.org/faq).
 
 ### libmosquitto
 
@@ -33,11 +31,11 @@ makes it suitable for "machine to machine" messaging such as with low power sens
 phones, embedded computers or microcontrollers like the Arduino. 
 ```
 
-See the [project website](http://mosquitto.org/) for more information.
+See the [project website](https://mosquitto.org/) for more information.
 
 ## Requirements
 
-This gem links against version 1.3.1 of `libmosquitto` . You will need to install additional packages for your system.
+This gem links against `libmosquitto` >= version 1.3.1. You will need to install additional packages for your system.
 
 ### OS X
 
@@ -51,43 +49,23 @@ brew install mosquitto
 
 ``` sh
 sudo apt-get update
-sudo apt-get install pkg-config cmake openssl libc-ares-dev
+sudo apt-get install libmosquitto-dev
 ```
-
-The current Ubuntu packages aren't on 1.3.1 yet - it's recommended to build libmosquitto from source (see below) until further notice. OpenSSL is an optional dependency - libmosquitto builds without it, however TLS specific features would not be available.
-
-### Building libmosquitto from source
-
-``` sh
-wget http://mosquitto.org/files/source/mosquitto-1.3.1.tar.gz
-tar xzf mosquitto-1.3.1.tar.gz
-cd mosquitto-1.3.1
-cmake .
-sudo make install
-```
-
-## Compatibility
-
-This gem is regularly tested against the following Ruby versions on Linux and Mac OS X:
-
- * Ruby MRI 1.9.3
- * Ruby MRI 2.0.0 (ongoing patch releases).
- * Ruby MRI 2.1.0 (ongoing patch releases).
- * Ruby MRI 2.1.1 (ongoing patch releases).
-
-Ruby 1.8, Rubinius and JRuby are not supported.
 
 ## Installing
 
 ### OSX / Linux
 
-When are requirements or dependencies are met, the following should install mosquitto without any problems :
+When libmosquitto-dev and ruby are installed and this ruby-mosquitto
+git repository is cloned, the following should install 
+this mosquitto binding:
 
 ``` sh
-gem install mosquitto
+gem build mosquitto.gemspec
+sudo gem install ./mosquitto-0.3.1.gem
 ```
 
-The extension checks for libmosquitto presence as well as a 1.3.1 version.
+The extension checks for libmosquitto presence.
 
 ## Usage
 
@@ -98,7 +76,7 @@ The simplest mode of operation - starts a new thread to process network traffic.
 ``` ruby
 require 'mosquitto'
 
-publisher = Mosquitto::Client.new("blocking")
+publisher = Mosquitto::Client.new("threaded")
 
 # Spawn a network thread with a main loop
 publisher.loop_start
@@ -156,10 +134,6 @@ publisher.connect("test.mosquitto.org", 1883, 10)
 publisher.loop_forever
 ```
 
-### Custom main loop
-
-EventMachine support is forthcoming.
-
 ### Logging
 
 The client supports any of the Ruby Logger libraries with the standard #add method interface
@@ -190,7 +164,7 @@ The following callbacks are supported (please follow links for further documenta
 
 ### TLS / SSL
 
-libmosquitto builds with TLS support by default, however [pre-shared key (PSK)](http://rubydoc.info/github/xively/mosquitto/master/Mosquitto/Client:tls_psk_set) support is not available when linked against older OpenSSL versions.
+libmosquitto builds with TLS support.
 
 ``` ruby
 tls_client = Mosquitto::Client.new
@@ -208,12 +182,6 @@ tls_client.connect('test.mosquitto.org', 8883, 10)
 ```
 
 See [documentation](http://rubydoc.info/github/xively/mosquitto) for the full API specification.
-
-## Contact, feedback and bugs
-
-This extension is currently maintained by Lourens Naudé (http://github.com/methodmissing) and contributors.
-
-Please file bugs / issues and feature requests on the [issue tracker](https://github.com/xively/mosquitto/issues)
 
 ## Development
 
