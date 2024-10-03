@@ -286,8 +286,9 @@ static VALUE rb_mosquitto_callback_thread(void *obj)
  *  On connect callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_connect_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, int rc)
+static void rb_mosquitto_client_on_connect_cb(struct mosquitto *mosq, void *obj, int rc)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_CONNECT_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;
@@ -304,8 +305,9 @@ static void rb_mosquitto_client_on_connect_cb(MOSQ_UNUSED struct mosquitto *mosq
  *  On disconnect callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_disconnect_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, int rc)
+static void rb_mosquitto_client_on_disconnect_cb(struct mosquitto *mosq, void *obj, int rc)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_DISCONNECT_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;
@@ -322,8 +324,9 @@ static void rb_mosquitto_client_on_disconnect_cb(MOSQ_UNUSED struct mosquitto *m
  *  On publish callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_publish_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, int mid)
+static void rb_mosquitto_client_on_publish_cb(struct mosquitto *mosq, void *obj, int mid)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_PUBLISH_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;
@@ -340,8 +343,9 @@ static void rb_mosquitto_client_on_publish_cb(MOSQ_UNUSED struct mosquitto *mosq
  *  On message callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_message_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg)
+static void rb_mosquitto_client_on_message_cb(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_MESSAGE_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;
@@ -359,8 +363,9 @@ static void rb_mosquitto_client_on_message_cb(MOSQ_UNUSED struct mosquitto *mosq
  *  On subscribe callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_subscribe_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, int mid, int qos_count, const int *granted_qos)
+static void rb_mosquitto_client_on_subscribe_cb(struct mosquitto *mosq, void *obj, int mid, int qos_count, const int *granted_qos)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_SUBSCRIBE_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;
@@ -379,8 +384,9 @@ static void rb_mosquitto_client_on_subscribe_cb(MOSQ_UNUSED struct mosquitto *mo
  *  On unsubscribe callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_unsubscribe_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, int mid)
+static void rb_mosquitto_client_on_unsubscribe_cb(struct mosquitto *mosq, void *obj, int mid)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_UNSUBSCRIBE_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;
@@ -397,8 +403,9 @@ static void rb_mosquitto_client_on_unsubscribe_cb(MOSQ_UNUSED struct mosquitto *
  *  On log callback - invoked by libmosquitto.
  *
  */
-static void rb_mosquitto_client_on_log_cb(MOSQ_UNUSED struct mosquitto *mosq, void *obj, int level, const char *str)
+static void rb_mosquitto_client_on_log_cb(struct mosquitto *mosq, void *obj, int level, const char *str)
 {
+    (void)mosq; // unused
     mosquitto_callback_t *callback = MOSQ_ALLOC(mosquitto_callback_t);
     callback->type = ON_LOG_CALLBACK;
     callback->client = (mosquitto_client_wrapper *)obj;

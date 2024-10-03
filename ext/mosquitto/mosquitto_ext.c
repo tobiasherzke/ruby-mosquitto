@@ -21,8 +21,9 @@ rb_encoding *binary_encoding;
  *  Mosquitto.version -> 1002003
  *
  */
-static VALUE rb_mosquitto_version(MOSQ_UNUSED VALUE obj)
+static VALUE rb_mosquitto_version(VALUE obj)
 {
+    (void)obj; // unused
     return INT2NUM(mosquitto_lib_version(NULL, NULL, NULL));
 }
 
@@ -36,8 +37,9 @@ static VALUE rb_mosquitto_version(MOSQ_UNUSED VALUE obj)
  *  Mosquitto.cleanup -> nil
  *
  */
-static VALUE rb_mosquitto_cleanup(MOSQ_UNUSED VALUE obj)
+static VALUE rb_mosquitto_cleanup(VALUE obj)
 {
+    (void)obj; // unused
     mosquitto_lib_cleanup();
     return Qnil;
 }
